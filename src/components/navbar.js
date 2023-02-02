@@ -6,6 +6,7 @@ import { Logo } from './logo';
 import * as colors from '../styles/colors';
 import { useAuth } from 'context/auth-context';
 
+import { useNavigate } from "react-router";
 import { googleLogout } from '@react-oauth/google';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -23,12 +24,12 @@ import MenuItem from '@mui/material/MenuItem';
 
 const RouteArray = {
    normal: [
-      { 'name': 'Supplies', 'link': '/' },
+      { 'name': 'Supplies', 'link': '/supplies' },
       { 'name': 'Request', 'link': '/my-request' },
       { 'name': 'History', 'link': '/history' },
    ],
    admin: [
-      { 'name': 'Supplies', 'link': '/' },
+      { 'name': 'Supplies', 'link': '/supplies' },
       { 'name': 'Request', 'link': '/my-request' },
       { 'name': 'Users', 'link': '/users' },
       { 'name': 'History', 'link': '/history' },
@@ -48,6 +49,7 @@ function ResponsiveAppBar({ roll, userData }) {
    const { logout } = useAuth();
    const [anchorElNav, setAnchorElNav] = React.useState(null);
    const [anchorElUser, setAnchorElUser] = React.useState(null);
+   const navigate = useNavigate();
 
    const handleOpenNavMenu = (event) => {
       setAnchorElNav(event.currentTarget);
@@ -68,6 +70,7 @@ function ResponsiveAppBar({ roll, userData }) {
       googleLogout();
       logout();
       handleCloseUserMenu();
+      navigate('/')
    };
 
    return (

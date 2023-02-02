@@ -18,13 +18,13 @@ import Container from '@mui/material/Container';
 
 const RouteArray = {
    normal: [
-      { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
+      { 'name': 'Supplies', 'link': '/supplies', 'component': <SuppliesList /> },
       { 'name': 'Request', 'link': '/my-request', 'component': <RequestsList /> },
       { 'name': 'History', 'link': '/history', 'component': <HistoryList /> },
       { 'name': 'Profile', 'link': '/profile', 'component': <Profile /> }
    ],
    admin: [
-      { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
+      { 'name': 'Supplies', 'link': '/supplies', 'component': <SuppliesList /> },
       { 'name': 'Request', 'link': '/my-request', 'component': <RequestsList /> },
       { 'name': 'Users', 'link': '/users', 'component': <UsersList /> },
       { 'name': 'History', 'link': '/history', 'component': <HistoryList /> },

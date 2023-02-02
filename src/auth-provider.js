@@ -22,6 +22,8 @@ function register({ username, password }) {
 
 async function logout() {
    window.localStorage.removeItem(localStorageKey)
+   window.localStorage.removeItem(localStorageEmail)
+   window.localStorage.removeItem("__auth_provider_OAuthToken__")
 }
 
 const authURL = process.env.REACT_APP_AUTH_URL
