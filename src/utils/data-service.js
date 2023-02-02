@@ -2,29 +2,14 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-class DataService {
+const getDatas = endpoint => axios.get(`${API_BASE_URL}/${endpoint}`).then(res => res.data);
 
-   getDatas() {
-      return axios.get(API_BASE_URL);
-   }
+const createData = (endpoint, data) => axios.post(`${API_BASE_URL}/${endpoint}`, data);
 
-   createData(data) {
-      return axios.post(API_BASE_URL, data);
-   }
+const getDataById = (endpoint, dataId) => axios.get(`${API_BASE_URL}/${endpoint}/${dataId}`);
 
-   getDataById(dataId) {
-      return axios.get(API_BASE_URL + '/' + dataId);
-   }
+const updateData = (endpoint, data, dataId) => axios.put(`${API_BASE_URL}/${endpoint}/${dataId}`, data);
 
-   updateData(data, dataId) {
-      return axios.put(API_BASE_URL + '/' + dataId, data);
-   }
+const deleteData = (endpoint, dataId) => axios.delete(`${API_BASE_URL}/${endpoint}/${dataId}`);
 
-   deleteData(dataId) {
-      return axios.delete(API_BASE_URL + '/' + dataId);
-   }
-}
-
-const dataService = new DataService();
-
-export default dataService;
+export { getDatas, createData, getDataById, updateData, deleteData }

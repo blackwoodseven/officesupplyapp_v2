@@ -9,18 +9,19 @@ import { useAuth } from 'context/auth-context';
 import ResponsiveAppBar from 'components/navbar';
 import NotFoundScreen from 'screens/not-found';
 import Profile from 'screens/profile';
+import SuppliesList from 'screens/supplies';
 
 import Container from '@mui/material/Container';
 
 const RouteArray = {
    normal: [
-      { 'name': 'Supplies', 'link': '/', 'component': <Profile /> },
+      { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
       { 'name': 'Request', 'link': '/my-request', 'component': <Profile /> },
       { 'name': 'History', 'link': '/history', 'component': <Profile /> },
       { 'name': 'Profile', 'link': '/profile', 'component': <Profile /> }
    ],
    admin: [
-      { 'name': 'Supplies', 'link': '/', 'component': <Profile /> },
+      { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
       { 'name': 'Request', 'link': '/my-request', 'component': <Profile /> },
       { 'name': 'Users', 'link': '/users', 'component': <Profile /> },
       { 'name': 'History', 'link': '/history', 'component': <Profile /> },
