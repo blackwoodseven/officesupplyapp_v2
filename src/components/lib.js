@@ -1,5 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import styled from '@emotion/styled/macro';
+import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 import * as colors from '../styles/colors';
 import Dialog from '@mui/material/Dialog';
