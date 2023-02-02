@@ -96,14 +96,14 @@ function SuppliesList() {
    const [openAlert, setOpenAlert] = React.useState(false);
    const [isOpen, setIsOpen] = useState(false);
    const { data, error, isLoading } = useSWR('suppliesList', getDatas);
+   
+   useEffect(() => {
+      setSuppplyData(data);
+   }, [data])
 
    const Alert = React.forwardRef(function Alert(props, ref) {
       return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
    });
-
-   useEffect(() => {
-      setSuppplyData(data);
-   }, [data])
 
    const createNewSupplyHandler = (data) => {
       createData('suppliesList', data)

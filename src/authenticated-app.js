@@ -12,6 +12,7 @@ import Profile from 'screens/profile';
 import SuppliesList from 'screens/supplies';
 import RequestsList from 'screens/requests';
 import HistoryList from 'screens/history';
+import UsersList from 'screens/users';
 
 import Container from '@mui/material/Container';
 
@@ -25,7 +26,7 @@ const RouteArray = {
    admin: [
       { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
       { 'name': 'Request', 'link': '/my-request', 'component': <RequestsList /> },
-      { 'name': 'Users', 'link': '/users', 'component': <Profile /> },
+      { 'name': 'Users', 'link': '/users', 'component': <UsersList /> },
       { 'name': 'History', 'link': '/history', 'component': <HistoryList /> },
       { 'name': 'Profile', 'link': '/profile', 'component': <Profile /> }
    ]
