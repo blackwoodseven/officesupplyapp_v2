@@ -19,6 +19,10 @@ import ImageListItem from '@mui/material/ImageListItem';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert from '@mui/material/Alert';
 
 function ItemForm({ onSubmit, submitButton }) {
    const [dimension, setDimension] = React.useState('');
@@ -88,23 +92,48 @@ function ItemForm({ onSubmit, submitButton }) {
 }
 
 function SuppliesList() {
-   const [suppplyData, setSuppplyData] = useState([])
-   const [isOpen, setIsOpen] = useState(false)
+   const [suppplyData, setSuppplyData] = useState([]);
+   const [openAlert, setOpenAlert] = React.useState(false);
+   const [isOpen, setIsOpen] = useState(false);
    const { data, error, isLoading } = useSWR('suppliesList', getDatas);
+
+   const Alert = React.forwardRef(function Alert(props, ref) {
+      return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+   });
 
    useEffect(() => {
       setSuppplyData(data);
    }, [data])
 
-
-   const createNewUserHandler = (data) => {
+   const createNewSupplyHandler = (data) => {
       createData('suppliesList', data)
          .then((res) => {
             setSuppplyData(oldArray => [...oldArray, res.data]);
-            setIsOpen(false)
+            setOpenAlert(true);
+            setIsOpen(false);
          })
          .catch(err => { setIsOpen(false); throw new Error(err) })
    }
+
+   const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+         return;
+      }
+      setOpenAlert(false);
+   };
+
+   const action = (
+      <React.Fragment>
+         <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleClose}>
+            <CloseIcon fontSize="small" />
+         </IconButton>
+      </React.Fragment>
+   );
+
    if (isLoading) return (<Spinner />)
 
    if (error) return (
@@ -138,7 +167,7 @@ function SuppliesList() {
                         <DialogTitle css={{ textAlign: 'center' }}>Add New Item</DialogTitle>
                         <DialogContent>
                            <ItemForm
-                              onSubmit={(data) => createNewUserHandler(data)}
+                              onSubmit={(data) => createNewSupplyHandler(data)}
                               submitButton={<Button variant="kantarBlack">Add</Button>}
                            />
                         </DialogContent>
@@ -168,6 +197,19 @@ function SuppliesList() {
                </>
             ) : (<div>No Data Found...</div>)
          }
+
+         <Snackbar
+            anchorOrigin={{
+               vertical: 'top',
+               horizontal: 'right',
+            }}
+            open={openAlert}
+            autoHideDuration={5000}
+            onClose={handleClose}
+            message="Added Successfully"
+            action={action}>
+            <Alert severity="success">Added Successfully!</Alert>
+         </Snackbar>
       </div >
    );
 }

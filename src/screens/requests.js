@@ -37,6 +37,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert from '@mui/material/Alert';
 
 import '../App.css'
 
@@ -148,19 +151,22 @@ function ItemForm({ onSubmit, submitButton, supplyData }) {
 
 function RequestsList() {
    const { user } = useAuth();
-   const [requestData, setRequestData] = useState([])
-   const { data, error, isLoading, isError } = useSWR('requestsList?status=pending', getDatas);
+   const [requestData, setRequestData] = useState([]);
+   const [openAlert, setOpenAlert] = React.useState(false);
+   const { data, error, isLoading } = useSWR('requestsList?status=pending', getDatas);
    const { data: supplyData } = useSWR('suppliesList', getDatas);
 
-   const [selectedRequestItem, setSelectedRequestItem] = React.useState(null)
-   const [selectedRequestItemModalisOpen, setSelectedRequestItemModalisOpen] = React.useState(false)
-   const [isOpen, setIsOpen] = React.useState(false)
+   const [selectedRequestItem, setSelectedRequestItem] = React.useState(null);
+   const [selectedRequestItemModalisOpen, setSelectedRequestItemModalisOpen] = React.useState(false);
+   const [isOpen, setIsOpen] = React.useState(false);
+
+   const Alert = React.forwardRef(function Alert(props, ref) {
+      return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+   });
 
    useEffect(() => {
       setRequestData(data);
    }, [data])
-
-
 
    if (requestData && requestData.length > 0 && supplyData && supplyData.length > 0) {
       requestData.forEach(data => {
@@ -178,6 +184,7 @@ function RequestsList() {
       row.status = status;
       updateData('requestsList', row, row.id)
          .then((res) => {
+            setOpenAlert(true);
             setRequestData(requestData.filter(d => d.id !== row.id))
          })
          .catch(err => { throw new Error(err); })
@@ -194,23 +201,42 @@ function RequestsList() {
       createData('requestsList', payLoad)
          .then((res) => {
             setRequestData(oldArray => [...oldArray, res.data])
+            setOpenAlert(true);
             setIsOpen(false)
          })
          .catch(err => { setIsOpen(false); throw new Error(err); })
    }
 
+   const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+         return;
+      }
+      setOpenAlert(false);
+   };
 
+   const action = (
+      <React.Fragment>
+         <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleClose}>
+            <CloseIcon fontSize="small" />
+         </IconButton>
+      </React.Fragment>
+   );
+
+   if (isLoading) return (<Spinner />)
+
+   if (error) return (
+      <div css={{ color: colors.danger }}>
+         <p>There was an error:</p>
+         <pre>{error.message}</pre>
+      </div>
+   )
 
    return (
       <div style={{ maxHeight: 'calc(85vh - 90px)', width: '100%' }}>
-         {isError ? (
-            <div css={{ color: colors.danger }}>
-               <p>There was an error:</p>
-               <pre>{error.message}</pre>
-            </div>
-         ) : null}
-         {isLoading ? (<Spinner />) : ('')}
-
          <>
             <div css={{
                display: 'grid',
@@ -292,6 +318,19 @@ function RequestsList() {
                   }}>No Data Available</div>
                )
             }
+
+            <Snackbar
+               anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+               }}
+               open={openAlert}
+               autoHideDuration={5000}
+               onClose={handleClose}
+               message="Added Successfully"
+               action={action}>
+               <Alert severity="success">Updated Successfully!</Alert>
+            </Snackbar>
          </>
       </div>
    );
