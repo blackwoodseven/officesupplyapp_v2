@@ -10,21 +10,23 @@ import ResponsiveAppBar from 'components/navbar';
 import NotFoundScreen from 'screens/not-found';
 import Profile from 'screens/profile';
 import SuppliesList from 'screens/supplies';
+import RequestsList from 'screens/requests';
+import HistoryList from 'screens/history';
 
 import Container from '@mui/material/Container';
 
 const RouteArray = {
    normal: [
       { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
-      { 'name': 'Request', 'link': '/my-request', 'component': <Profile /> },
-      { 'name': 'History', 'link': '/history', 'component': <Profile /> },
+      { 'name': 'Request', 'link': '/my-request', 'component': <RequestsList /> },
+      { 'name': 'History', 'link': '/history', 'component': <HistoryList /> },
       { 'name': 'Profile', 'link': '/profile', 'component': <Profile /> }
    ],
    admin: [
       { 'name': 'Supplies', 'link': '/', 'component': <SuppliesList /> },
-      { 'name': 'Request', 'link': '/my-request', 'component': <Profile /> },
+      { 'name': 'Request', 'link': '/my-request', 'component': <RequestsList /> },
       { 'name': 'Users', 'link': '/users', 'component': <Profile /> },
-      { 'name': 'History', 'link': '/history', 'component': <Profile /> },
+      { 'name': 'History', 'link': '/history', 'component': <HistoryList /> },
       { 'name': 'Profile', 'link': '/profile', 'component': <Profile /> }
    ]
 }

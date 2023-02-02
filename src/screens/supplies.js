@@ -2,11 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import * as colors from 'styles/colors';
-import { Button, Spinner, FormGroup, Input, ErrorMessage, CircleButton, MUIDialog } from 'components/lib';
+import { Button, Spinner, FormGroup, Input, CircleButton, MUIDialog } from 'components/lib';
 
 import { getDatas, createData } from 'utils/data-service';
-import { useAsync } from 'utils/hooks';
-import useSWR from 'swr'
+import useSWR from 'swr';
 
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -22,7 +21,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 function ItemForm({ onSubmit, submitButton }) {
-   const { isLoading, isError, error } = useAsync()
    const [dimension, setDimension] = React.useState('');
    function handleSubmit(event) {
       event.preventDefault()
@@ -82,11 +80,9 @@ function ItemForm({ onSubmit, submitButton }) {
                { type: 'submit' },
                ...(Array.isArray(submitButton.props.children)
                   ? submitButton.props.children
-                  : [submitButton.props.children]),
-               isLoading ? <Spinner css={{ marginLeft: 5 }} /> : null,
+                  : [submitButton.props.children]), null
             )}
          </div>
-         {isError ? <ErrorMessage error={error} /> : null}
       </form>
    )
 }
