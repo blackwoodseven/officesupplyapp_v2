@@ -32,7 +32,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --watch",
+    "test:coverage": "jest --watch=false --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -55,6 +56,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@testing-library/dom": "^8.20.0",
     "jest": "^27.5.1",
     "msw": "^1.0.0"
   }

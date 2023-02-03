@@ -214,12 +214,12 @@ function UsersList() {
                                     } />
                                  <Box sx={{ minWidth: 120 }}>
                                     <FormControl variant="standard" sx={{ mr: 3, minWidth: 150 }}>
-                                       <InputLabel id="edit-role-select-label">Age</InputLabel>
+                                       <InputLabel id="edit-role-select-label">Role</InputLabel>
                                        <Select
                                           labelId="edit-role-select-label"
                                           id="edit-role-select"
                                           value={user.role}
-                                          label="Age"
+                                          label="Role"
                                           onChange={(e) => updateUserRoleHandler(e, user)}>
                                           <MenuItem value={'normal'}>Normal</MenuItem>
                                           <MenuItem value={'admin'}>Admin</MenuItem>
