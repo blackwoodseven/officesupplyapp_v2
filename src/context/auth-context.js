@@ -14,7 +14,8 @@ async function bootstrapAppData() {
       // }
       // const data = await client('api/login', { data: payload })
       const data = await client('login')
-      user = data
+      user = data;
+      window.localStorage.setItem('__user-data__', JSON.stringify(user))
    }
    return user
 }

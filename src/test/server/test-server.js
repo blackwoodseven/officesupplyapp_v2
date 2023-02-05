@@ -3,7 +3,7 @@ import { setupServer } from 'msw/node'
 
 const server = setupServer(
    // Describe the requests to mock.
-   rest.get('/book/:bookId', (req, res, ctx) => {
+   rest.get('/usersList', (req, res, ctx) => {
       return res(
          ctx.json({
             title: 'Lord of the Rings',

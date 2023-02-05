@@ -8,6 +8,7 @@ async function getToken(key = localStorageKey) {
 function handleUserResponse({ user }) {
    window.localStorage.setItem(localStorageKey, user.ID)
    window.localStorage.setItem(localStorageEmail, user.Email)
+   window.localStorage.setItem('__user-data__', user)
    return user
 }
 
