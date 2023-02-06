@@ -1,18 +1,17 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
-import { act, render, fireEvent, within } from '@testing-library/react';
 import { screen } from '@testing-library/react';
-import { loginAsUser } from 'test/app-test-utils'
-import userEvent from '@testing-library/user-event'
-import { waitFor } from 'test/app-test-utils'
+import { loginAsUser, render, act } from 'test/app-test-utils'
 import RequestsList from '../requests';
 
 async function renderRequestScreen({ user }) {
    if (user === undefined) {
       user = await loginAsUser()
    }
-   const utils = await render(<RequestsList userParam={user} />)
-   return { ...utils }
+   await act(async () => {
+      const utils = await render(<RequestsList />)
+      return { ...utils }
+   })
 }
 
 test('render requests list and check button(s) are available', async () => {
