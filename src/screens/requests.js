@@ -149,8 +149,9 @@ function ItemForm({ onSubmit, submitButton, supplyData }) {
    )
 }
 
-function RequestsList() {
+function RequestsList({ userParam }) {
    const { user } = useAuth();
+   // const user = userParam;
    const [requestData, setRequestData] = useState([]);
    const [openAlert, setOpenAlert] = React.useState(false);
    const { data, error, isLoading } = useSWR('requestsList?status=pending', getDatas);

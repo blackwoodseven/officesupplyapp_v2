@@ -5,6 +5,30 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { waitFor } from 'test/app-test-utils'
 import UsersList from "../users";
+import { rest } from 'msw'
+import { setupServer } from 'msw/node'
+
+const server = setupServer(
+   rest.post('/usersList', (req, res, ctx) => {
+      return res(
+         ctx.json({
+            "id": 30,
+            "name": "Jaime Widocks",
+            "email": "jwidockst@issuu.com",
+            "gender": "Male",
+            "role": "normal"
+         }),
+      )
+   }),
+)
+
+// beforeAll(() => {
+//    server.listen()
+// })
+
+// afterAll(() => {
+//    server.close()
+// })
 
 async function renderUserList() {
    const utils = await render(<UsersList />)
@@ -36,22 +60,26 @@ test('render create new user', async () => {
    await renderUserList()
    const addNewUserButton = await screen.findByRole('button', { name: /add new user/i });
    expect(addNewUserButton).toBeInTheDocument();
-   
+
    await userEvent.click(addNewUserButton);
+
    const userInputName = screen.getByRole('textbox', { name: /name/i })
-   userEvent.type(userInputName, "Samarth Udgiri")
-   expect(userInputName).toBeInTheDocument();
+   await userEvent.type(userInputName, "Samarth Udgiri")
+   expect(userInputName).toHaveValue('Samarth Udgiri')
 
    const userInputEmail = screen.getByRole('textbox', { name: /email/i })
-   userEvent.type(userInputEmail, "Samarth.udgiri@kantar.com")
-   expect(userInputEmail).toBeInTheDocument();
+   await userEvent.type(userInputEmail, "Samarth.udgiri@kantar.com")
+   expect(userInputEmail).toHaveValue("Samarth.udgiri@kantar.com")
 
    const userInputId = screen.getByRole('textbox', { name: /id/i })
-   userEvent.type(userInputId, "1211111")
-   expect(userInputId).toBeInTheDocument();
+   await userEvent.type(userInputId, "1211111")
+   expect(userInputId).toHaveValue("1211111")
 
-   // const submitButton = screen.getByRole('button', {name: /add/i})
-   // act(() => {
-   //    userEvent.click(submitButton);
-   // })
+   const submitButton = screen.getByRole('button', { name: /add/i })
+   await act(async () => userEvent.click(submitButton));
+   setTimeout(() => {
+      expect(userInputName).not.toBeInTheDocument();
+      expect(userInputEmail).not.toBeInTheDocument();
+      expect(userInputId).not.toBeInTheDocument();
+   }, 200)
 });

@@ -3,8 +3,8 @@ import { useAuth } from 'context/auth-context'
 import '../App.css'
 
 function Profile({ userParam }) {
-   const user = userParam;
-   // const { user } = useAuth();
+   // const user = userParam;
+   const { user } = useAuth();
    return (
       <section className="profile">
          <header className="header">

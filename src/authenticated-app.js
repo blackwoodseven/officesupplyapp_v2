@@ -15,6 +15,16 @@ import HistoryList from 'screens/history';
 import UsersList from 'screens/users';
 
 import Container from '@mui/material/Container';
+// this object is used for Unit test only
+// const userParam = {
+//    "ID": "b72037f5-ef12-466b-a9cc-6a8b57dc8c02",
+//    "Name": "Samarth Udgiri Kantar",
+//    "Email": "samarth.udgiri.kantar@blackwoodseven.com",
+//    "Role": "admin",
+//    "CreatedAt": "2023-01-31T10:12:44.274Z",
+//    "UpdatedAt": "2023-01-31T17:35:49.27+05:30",
+//    "DeletedAt": null
+// };
 
 const RouteArray = {
    normal: [
