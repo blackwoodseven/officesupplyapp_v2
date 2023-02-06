@@ -5,14 +5,14 @@ const load = () => Object.assign(users, JSON.parse(window.localStorage.getItem(u
 
 async function create({ Name }) {
    validateUserForm({ Name })
-   const id = hash(Name)
-   if (users[id]) {
-      const error = new Error(
-         `Cannot create a new user with the username "${Name}"`,
-      )
-      error.status = 400
-      throw error
-   }
+   const id = hash(Name);
+   // if (users[id]) {
+   //    const error = new Error(
+   //       `Cannot create a new user with the username "${Name}"`,
+   //    )
+   //    error.status = 400
+   //    throw error
+   // }
    users[id] = { id, Name }
    persist()
    return read(id)

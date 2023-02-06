@@ -1,17 +1,16 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
 import { screen } from '@testing-library/react';
-import { loginAsUser, render, act } from 'test/app-test-utils'
-import RequestsList from '../requests';
+import { loginAsUser, render } from 'test/app-test-utils'
+import App from 'App';
 
 async function renderRequestScreen({ user }) {
    if (user === undefined) {
       user = await loginAsUser()
    }
-   await act(async () => {
-      const utils = await render(<RequestsList />)
-      return { ...utils }
-   })
+   const route = `/my-request`
+   const utils = await render(<App />, { user, route })
+   return { ...utils, user }
 }
 
 test('render requests list and check button(s) are available', async () => {

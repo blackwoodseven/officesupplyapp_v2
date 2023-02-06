@@ -15,7 +15,9 @@ function AppProviders({ children }) {
    return (
       <QueryClientProvider client={queryClient}>
          <Router>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+               {children}
+            </AuthProvider>
          </Router>
       </QueryClientProvider>
    )

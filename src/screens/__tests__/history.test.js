@@ -1,17 +1,16 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
+import { loginAsUser, render } from 'test/app-test-utils';
 import { screen } from '@testing-library/react';
-import { loginAsUser, render, act } from 'test/app-test-utils'
-import HistoryList from '../history';
+import App from 'App';
 
 async function renderHistoryScreen({ user }) {
    if (user === undefined) {
       user = await loginAsUser()
    }
-   await act(async () => {
-      const utils = await render(<HistoryList />)
-      return { ...utils }
-   })
+   const route = '/history'
+   const utils = await render(<App />, { user, route })
+   return { ...utils, user }
 }
 
 test('render requests list and check button(s) are available', async () => {

@@ -1,42 +1,23 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
-import { act, render } from '@testing-library/react';
-import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { waitFor } from 'test/app-test-utils'
-import UsersList from "../users";
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
+import { act, render, screen, loginAsUser } from 'test/app-test-utils';
+import userEvent from '@testing-library/user-event';
+import App from 'App';
 
-const server = setupServer(
-   rest.post('/usersList', (req, res, ctx) => {
-      return res(
-         ctx.json({
-            "id": 30,
-            "name": "Jaime Widocks",
-            "email": "jwidockst@issuu.com",
-            "gender": "Male",
-            "role": "normal"
-         }),
-      )
-   }),
-)
+async function renderUserList({ user }) {
+   if (user === undefined) {
+      user = await loginAsUser()
+   }
+   const route = '/users';
+   const utils = await render(<App />, { user, route });
+   return { ...utils, user }
 
-// beforeAll(() => {
-//    server.listen()
-// })
-
-// afterAll(() => {
-//    server.close()
-// })
-
-async function renderUserList() {
-   const utils = await render(<UsersList />)
-   return { ...utils }
+   // const utils = await render(<UsersList />)
+   // return { ...utils }
 }
 
 test('render user list and check button(s) are available', async () => {
-   await renderUserList()
+   await renderUserList({})
    const addNewUserButton = await screen.findByRole('button', { name: /add new user/i });
    expect(addNewUserButton).toBeInTheDocument();
 
@@ -57,7 +38,7 @@ test('render user list and check button(s) are available', async () => {
 });
 
 test('render create new user', async () => {
-   await renderUserList()
+   await renderUserList({})
    const addNewUserButton = await screen.findByRole('button', { name: /add new user/i });
    expect(addNewUserButton).toBeInTheDocument();
 

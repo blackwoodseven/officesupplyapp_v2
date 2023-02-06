@@ -1,18 +1,21 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
-import { act, render, fireEvent, within } from '@testing-library/react';
+import { loginAsUser, render, fireEvent, within } from 'test/app-test-utils'
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { waitFor } from 'test/app-test-utils'
-import SuppliesList from '../supplies';
+import userEvent from '@testing-library/user-event';
+import App from 'App';
 
-async function renderSupplyScreen() {
-   const utils = await render(<SuppliesList />)
-   return { ...utils }
+async function renderSupplyScreen({ user }) {
+   if (user === undefined) {
+      user = await loginAsUser()
+   }
+   const route = '/supplies';
+   const utils = await render(<App />, { user, route });
+   return { ...utils, user }
 }
 
 test('render supplies list and check button(s) are available', async () => {
-   await renderSupplyScreen()
+   await renderSupplyScreen({})
    const addNewUserButton = await screen.findByRole('button', { name: /add new item/i });
    expect(addNewUserButton).toBeInTheDocument();
 
@@ -24,7 +27,7 @@ test('render supplies list and check button(s) are available', async () => {
 });
 
 test('render create new supply Item', async () => {
-   await renderSupplyScreen()
+   await renderSupplyScreen({})
    const addNewUserButton = await screen.findByRole('button', { name: /add new item/i });
    expect(addNewUserButton).toBeInTheDocument();
    await userEvent.click(addNewUserButton);
