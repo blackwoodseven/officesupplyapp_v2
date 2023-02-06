@@ -3,14 +3,8 @@ import { useAuth } from 'context/auth-context'
 import '../App.css'
 
 function Profile({ userParam }) {
-   // let user = {};
-   // if (userParam && userParam.Name) {
-   //    user = userParam;
-   // } else {
-   //    // eslint-disable-next-line react-hooks/rules-of-hooks
-   //    user = useAuth();
-   // }
-   const { user } = useAuth();
+   const user = userParam;
+   // const { user } = useAuth();
    return (
       <section className="profile">
          <header className="header">

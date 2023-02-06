@@ -32,34 +32,8 @@ test('render user list and check button(s) are available', async () => {
    expect(roleNormal).toHaveLength(11);
 });
 
-// test('check user functionality', async () => {
-//    await renderUserList()
-//    // const addNewUserButton = await screen.findByRole('button', { name: /add new user/i });
-//    // expect(addNewUserButton).toBeInTheDocument();
-
-//    const deleteUserButton = await screen.findAllByRole('button', { name: 'Delete User' });
-//    await userEvent.click(deleteUserButton.at(1))
-
-//    const firstName = await screen.findByText(/che sjollem/i);
-//    expect(firstName).toBeInTheDocument();
-
-//    // expect(deleteUserButton).toHaveLength(30)
-
-//    // const firstName = await screen.findByText(/che sjollem/i);
-//    // expect(firstName).toBeInTheDocument();
-
-//    // const email = await screen.findByText(/csjollema0@yolasite.com/i);
-//    // expect(email).toBeInTheDocument();
-
-//    // const roleAdmin = await screen.findAllByDisplayValue(/admin/i);
-//    // expect(roleAdmin).toHaveLength(19);
-
-//    // const roleNormal = await screen.findAllByDisplayValue(/normal/i);
-//    // expect(roleNormal).toHaveLength(11);
-// });
-
 test('render create new user', async () => {
-   const { userlist } = await renderUserList()
+   await renderUserList()
    const addNewUserButton = await screen.findByRole('button', { name: /add new user/i });
    expect(addNewUserButton).toBeInTheDocument();
    

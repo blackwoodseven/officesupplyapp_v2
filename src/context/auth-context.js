@@ -1,12 +1,13 @@
-import React from 'react'
-import * as auth from 'auth-provider'
-import { client } from 'utils/login-service'
-import { useAsync } from 'utils/hooks'
+import React from 'react';
+import * as auth from 'auth-provider';
+import { client } from 'utils/login-service';
+import { useAsync } from 'utils/hooks';
+import { useNavigate } from "react-router";
 import { FullPageSpinner, FullPageErrorFallback } from 'components/lib'
 
-async function bootstrapAppData() {
+async function bootstrapAppData(navigate) {
    let user = null
-
+   
    const token = await auth.getToken('__auth_provider_OAuthToken__')
    if (token) {
       // const payload = {
@@ -16,6 +17,7 @@ async function bootstrapAppData() {
       const data = await client('login')
       user = data;
       window.localStorage.setItem('__user-data__', JSON.stringify(user))
+      // navigate('/supplies')
    }
    return user
 }
@@ -24,6 +26,7 @@ const AuthContext = React.createContext()
 AuthContext.displayName = 'AuthContext'
 
 function AuthProvider(props) {
+   const navigate = useNavigate();
    const {
       data: user,
       status,
@@ -38,9 +41,9 @@ function AuthProvider(props) {
 
    // revisit the code
    React.useEffect(() => {
-      const appDataPromise = bootstrapAppData()
+      const appDataPromise = bootstrapAppData(navigate)
       run(appDataPromise)
-   }, [run])
+   }, [navigate, run])
 
    const login = React.useCallback(
       form => auth.login(form).then(user => setData(user)),

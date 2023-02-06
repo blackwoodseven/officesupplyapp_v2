@@ -55,11 +55,11 @@ function ItemForm({ onSubmit, submitButton }) {
       >
          <FormGroup>
             <label htmlFor="product">Product Name</label>
-            <Input id="product" />
+            <Input id="product" name="productname"/>
          </FormGroup>
          <FormGroup>
             <label htmlFor="quantity">Quantity</label>
-            <Input id="quantity" />
+            <Input id="quantity" name="productquantity"/>
          </FormGroup>
          <FormGroup>
             <FormControl fullWidth>

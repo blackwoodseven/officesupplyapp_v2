@@ -17,10 +17,6 @@ async function renderProfile({ user }) {
 }
 
 test('render Profile page', async () => {
-   jest.mock("../../context/auth-context.js", () => ({
-      __esModule: true,
-      default: React.createContext()
-   }));
    const { profilePage, user } = await renderProfile({});
 
    const findEmail = await screen.findByText(user.Email);
