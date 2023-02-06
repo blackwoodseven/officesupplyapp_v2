@@ -1,0 +1,757 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "login": {
+    "ID": "b72037f5-ef12-466b-a9cc-6a8b57dc8c02",
+    "Name": "Samarth Udgiri Kantar",
+    "Email": "samarth.udgiri.kantar@blackwoodseven.com",
+    "Role": "admin",
+    "CreatedAt": "2023-01-31T10:12:44.274Z",
+    "UpdatedAt": "2023-01-31T17:35:49.27+05:30",
+    "DeletedAt": null
+  },
+  "bootstrap": {
+    "ID": "b72037f5-ef12-466b-a9cc-6a8b57dc8c02",
+    "Name": "Samarth Udgiri Kantar",
+    "Email": "samarth.udgiri.kantar@blackwoodseven.com",
+    "Role": "admin",
+    "CreatedAt": "2023-01-31T10:12:44.274Z",
+    "UpdatedAt": "2023-01-31T17:35:49.27+05:30",
+    "DeletedAt": null
+  },
+  "userList": [
+    {
+      "id": 1,
+      "name": "Che Sjollema",
+      "email": "csjollema0@yolasite.com",
+      "gender": "Polygender",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Lianne Shillaber",
+      "email": "lshillaber1@dedecms.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Adelheid Viney",
+      "email": "aviney2@phpbb.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 4,
+      "name": "Elizabeth Hacquard",
+      "email": "ehacquard3@zimbio.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 5,
+      "name": "Welbie Stuke",
+      "email": "wstuke4@vk.com",
+      "gender": "Male",
+      "role": "admin"
+    },
+    {
+      "id": 6,
+      "name": "Cris Foard",
+      "email": "cfoard5@devhub.com",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 7,
+      "name": "Thorvald Senton",
+      "email": "tsenton6@apple.com",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 8,
+      "name": "Bili Kinny",
+      "email": "bkinny7@flickr.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 9,
+      "name": "Judy Schroter",
+      "email": "jschroter8@hexun.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 10,
+      "name": "Roscoe Lemonby",
+      "email": "rlemonby9@google.nl",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 11,
+      "name": "Fletcher Derrick",
+      "email": "fderricka@foxnews.com",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 12,
+      "name": "Guillema Moniker",
+      "email": "gmonikerb@abc.net.au",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 13,
+      "name": "Cecil Burlingame",
+      "email": "cburlingamec@dropbox.com",
+      "gender": "Male",
+      "role": "admin"
+    },
+    {
+      "id": 14,
+      "name": "Rhody Colliver",
+      "email": "rcolliverd@g.co",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 15,
+      "name": "Jackson McKeveney",
+      "email": "jmckeveneye@tamu.edu",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 16,
+      "name": "Lanni Durnford",
+      "email": "ldurnfordf@usatoday.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 17,
+      "name": "Wenona Matanin",
+      "email": "wmataning@nature.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 18,
+      "name": "Benny Hallet",
+      "email": "bhalleth@xing.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 19,
+      "name": "Alberik Chasney",
+      "email": "achasneyi@hao123.com",
+      "gender": "Bigender",
+      "role": "admin"
+    },
+    {
+      "id": 20,
+      "name": "Ginny Wiseman",
+      "email": "gwisemanj@loc.gov",
+      "gender": "Female",
+      "role": "normal"
+    },
+    {
+      "id": 21,
+      "name": "Orelle Noyes",
+      "email": "onoyesk@fc2.com",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 22,
+      "name": "Garrik Vagg",
+      "email": "gvaggl@vk.com",
+      "gender": "Polygender",
+      "role": "normal"
+    },
+    {
+      "id": 23,
+      "name": "Wendi McIntee",
+      "email": "wmcinteem@bing.com",
+      "gender": "Agender",
+      "role": "admin"
+    },
+    {
+      "id": 24,
+      "name": "Humberto Lindborg",
+      "email": "hlindborgn@github.com",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 25,
+      "name": "Kare Lillie",
+      "email": "klillieo@tinypic.com",
+      "gender": "Female",
+      "role": "normal"
+    },
+    {
+      "id": 26,
+      "name": "Tabb Dannohl",
+      "email": "tdannohlp@home.pl",
+      "gender": "Male",
+      "role": "admin"
+    },
+    {
+      "id": 27,
+      "name": "Denver Espinha",
+      "email": "despinhaq@google.nl",
+      "gender": "Male",
+      "role": "admin"
+    },
+    {
+      "id": 28,
+      "name": "Rorie Le Brun",
+      "email": "rler@uiuc.edu",
+      "gender": "Female",
+      "role": "admin"
+    },
+    {
+      "id": 29,
+      "name": "Marv Fordyce",
+      "email": "mfordyces@shop-pro.jp",
+      "gender": "Male",
+      "role": "normal"
+    },
+    {
+      "id": 30,
+      "name": "Jaime Widocks",
+      "email": "jwidockst@issuu.com",
+      "gender": "Male",
+      "role": "normal"
+    }
+  ],
+  "suppliesList": [
+    {
+      "id": 1,
+      "product": "Coffee",
+      "quantity": "7 Bag"
+    },
+    {
+      "id": 2,
+      "product": "Headphone",
+      "quantity": "53 Pack"
+    },
+    {
+      "id": 3,
+      "product": "Tea Powder",
+      "quantity": "0 Pack"
+    },
+    {
+      "id": 4,
+      "product": "Coffee",
+      "quantity": "38 Bag"
+    },
+    {
+      "id": 5,
+      "product": "Coffee",
+      "quantity": "49 Pack"
+    },
+    {
+      "id": 6,
+      "product": "Headphone",
+      "quantity": "9 Bag"
+    },
+    {
+      "id": 7,
+      "product": "Tea Powder",
+      "quantity": "5 Pack"
+    },
+    {
+      "id": 8,
+      "product": "Coffee",
+      "quantity": "54 Gram"
+    },
+    {
+      "id": 9,
+      "product": "Tea Powder",
+      "quantity": "93 KG"
+    },
+    {
+      "id": 10,
+      "product": "Headphone",
+      "quantity": "1 Pic"
+    },
+    {
+      "id": 11,
+      "product": "Tea Powder",
+      "quantity": "5 KG"
+    },
+    {
+      "id": 12,
+      "product": "Headphone",
+      "quantity": "15 Bag"
+    },
+    {
+      "id": 13,
+      "product": "Tea Powder",
+      "quantity": "7 Bag"
+    },
+    {
+      "id": 14,
+      "product": "Headphone",
+      "quantity": "7 Bag"
+    },
+    {
+      "id": 15,
+      "product": "Tea Powder",
+      "quantity": "98 Gram"
+    },
+    {
+      "id": 16,
+      "product": "Headphone",
+      "quantity": "9 Pic"
+    },
+    {
+      "id": 17,
+      "product": "Headphone",
+      "quantity": "1 Pack"
+    },
+    {
+      "id": 18,
+      "product": "Coffee",
+      "quantity": "6 Pack"
+    },
+    {
+      "id": 19,
+      "product": "Tea Powder",
+      "quantity": "5 Pack"
+    },
+    {
+      "id": 20,
+      "product": "Tea Powder",
+      "quantity": "02 Bag"
+    },
+    {
+      "id": 21,
+      "product": "Headphone",
+      "quantity": "3 Gram"
+    },
+    {
+      "id": 22,
+      "product": "Headphone",
+      "quantity": "6 Bag"
+    },
+    {
+      "id": 23,
+      "product": "Headphone",
+      "quantity": "86 Pack"
+    },
+    {
+      "id": 24,
+      "product": "Headphone",
+      "quantity": "1 Pack"
+    },
+    {
+      "id": 25,
+      "product": "Headphone",
+      "quantity": "8 Pack"
+    },
+    {
+      "id": 26,
+      "product": "Headphone",
+      "quantity": "67 Pack"
+    },
+    {
+      "id": 27,
+      "product": "Headphone",
+      "quantity": "9 Pack"
+    },
+    {
+      "id": 28,
+      "product": "Headphone",
+      "quantity": "3 Pack"
+    },
+    {
+      "id": 29,
+      "product": "Tea Powder",
+      "quantity": "89 KG"
+    },
+    {
+      "id": 30,
+      "product": "Headphone",
+      "quantity": "2 Bag"
+    },
+    {
+      "product": "Note Pad",
+      "quantity": "2 Pack",
+      "id": 31
+    },
+    {
+      "product": "Coffee",
+      "quantity": "1 KG",
+      "id": 32
+    },
+    {
+      "product": "Note Pad",
+      "quantity": "2 Pack",
+      "id": 33
+    },
+    {
+      "product": "Pen",
+      "quantity": "20 Pic",
+      "id": 34
+    },
+    {
+      "product": "red pen",
+      "quantity": "2 Pic",
+      "id": 35
+    },
+    {
+      "product": "black pen",
+      "quantity": "22 Pic",
+      "id": 36
+    },
+    {
+      "product": "Coffee",
+      "quantity": "2 KG",
+      "id": 37
+    },
+    {
+      "product": "Pen",
+      "quantity": "1 Pack",
+      "id": 38
+    },
+    {
+      "product": "black pen",
+      "quantity": "3 Gram",
+      "id": 39
+    },
+    {
+      "product": "red pen",
+      "quantity": "12 Pic",
+      "id": 40
+    },
+    {
+      "product": "Coffee",
+      "quantity": "2 KG",
+      "id": 41
+    },
+    {
+      "product": "red pen",
+      "quantity": "1 Pack",
+      "id": 42
+    },
+    {
+      "product": "Coffee",
+      "quantity": "3 Bag",
+      "id": 43
+    },
+    {
+      "product": "Coco cola",
+      "quantity": "20 Pic",
+      "id": 44
+    },
+    {
+      "product": "black pen",
+      "quantity": "2 Pack",
+      "id": 45
+    },
+    {
+      "product": "black pen",
+      "quantity": "10 Pic",
+      "id": 46
+    },
+    {
+      "product": "Coffee",
+      "quantity": "1 Gram",
+      "id": 47
+    },
+    {
+      "product": "Laptop Bag",
+      "quantity": "20 Pic",
+      "id": 48
+    },
+    {
+      "product": "Keyboard",
+      "quantity": "2 Pic",
+      "id": 49
+    },
+    {
+      "product": "Keyboard",
+      "quantity": "3 Pic",
+      "id": 50
+    },
+    {
+      "product": "Keyboard",
+      "quantity": "1 Pic",
+      "id": 51
+    },
+    {
+      "product": "red pen",
+      "quantity": "20 Pic",
+      "id": 52
+    },
+    {
+      "product": "Pen",
+      "quantity": "20 Pic",
+      "id": 53
+    }
+  ],
+  "requestsList": [
+    {
+      "id": 1,
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth Udgiri",
+      "requestList": [
+        {
+          "id": 2,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "quantity": 3
+        },
+        {
+          "id": 10,
+          "quantity": 3
+        }
+      ],
+      "requestedDate": "24/01/2023",
+      "dueDate": "29/01/2023",
+      "lastStatusUpdate": "24/01/2023",
+      "status": "approved"
+    },
+    {
+      "id": 2,
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth Udgiri",
+      "requestList": [
+        {
+          "id": 2,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "quantity": 3
+        },
+        {
+          "id": 10,
+          "quantity": 3
+        },
+        {
+          "id": 19,
+          "quantity": 2
+        },
+        {
+          "id": 31,
+          "quantity": 2
+        }
+      ],
+      "requestedDate": "24/01/2023",
+      "dueDate": "29/01/2023",
+      "lastStatusUpdate": "24/01/2023",
+      "status": "rejected"
+    },
+    {
+      "id": 3,
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth Udgiri",
+      "requestList": [
+        {
+          "id": 2,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "quantity": 3
+        },
+        {
+          "id": 10,
+          "quantity": 3
+        }
+      ],
+      "requestedDate": "24/01/2023",
+      "dueDate": "31/01/2023",
+      "lastStatusUpdate": "24/01/2023",
+      "status": "approved"
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "18",
+          "quantity": "3"
+        },
+        {
+          "id": "33",
+          "quantity": "6"
+        }
+      ],
+      "dueDate": "31/01/2023",
+      "status": "approved",
+      "id": 4
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "18",
+          "quantity": "1"
+        },
+        {
+          "id": "33",
+          "quantity": "50"
+        }
+      ],
+      "dueDate": "31/01/2023",
+      "status": "rejected",
+      "id": 5
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "18",
+          "quantity": "3",
+          "name": "Coffee",
+          "productQuantity": "6 Pack"
+        },
+        {
+          "id": "20",
+          "quantity": "2",
+          "name": "Tea Powder",
+          "productQuantity": "02 Bag"
+        }
+      ],
+      "dueDate": "31/01/2023",
+      "status": "approved",
+      "id": 6
+    },
+    {
+      "email": "anshul.sharma.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "18",
+          "quantity": "1"
+        },
+        {
+          "id": "33",
+          "quantity": "50"
+        }
+      ],
+      "dueDate": "31/01/2023",
+      "status": "rejected",
+      "id": 7
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "44",
+          "quantity": "2"
+        },
+        {
+          "id": "39",
+          "quantity": "12"
+        }
+      ],
+      "dueDate": "01/02/2023",
+      "status": "rejected",
+      "id": 8
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "45",
+          "quantity": "3"
+        },
+        {
+          "id": "18",
+          "quantity": "2"
+        }
+      ],
+      "dueDate": "28/02/2023",
+      "status": "pending",
+      "id": 9
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "34",
+          "quantity": "10"
+        },
+        {
+          "id": "16",
+          "quantity": "10"
+        }
+      ],
+      "dueDate": "15/02/2023",
+      "status": "pending",
+      "id": 10
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth udgiri",
+      "requestList": [
+        {
+          "id": "15",
+          "quantity": "3",
+          "name": "Tea Powder",
+          "productQuantity": "98 Gram"
+        }
+      ],
+      "dueDate": "24/02/2023",
+      "status": "pending",
+      "id": 11
+    },
+    {
+      "email": "samarth.udgiri.kantar@blackwoodseven.com",
+      "employeeName": "Samarth Udgiri Kantar",
+      "requestList": [
+        {
+          "id": "14",
+          "quantity": "2",
+          "name": "Headphone",
+          "productQuantity": "7 Bag"
+        },
+        {
+          "id": "18",
+          "quantity": "12",
+          "name": "Coffee",
+          "productQuantity": "6 Pack"
+        },
+        {
+          "id": "38",
+          "quantity": "18",
+          "name": "Pen",
+          "productQuantity": "1 Pack"
+        }
+      ],
+      "dueDate": "17/02/2023",
+      "status": "approved",
+      "id": 12
+    }
+  ]
+}
