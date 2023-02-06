@@ -33,7 +33,7 @@
     "start": "concurrently --kill-others \"json-server --watch db.json --port 3004\" \"react-scripts start\"",
     "build": "react-scripts build",
     "react:start": "react-scripts start",
-    "test": "is-ci-cli test:coverage test:watch",
+    "test": "jest --watch",
     "test:watch": "jest --watch",
     "test:coverage": "jest --watch=false --coverage",
     "eject": "react-scripts eject",

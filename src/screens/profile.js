@@ -2,8 +2,7 @@
 import { useAuth } from 'context/auth-context'
 import '../App.css'
 
-function Profile({ userParam }) {
-   // const user = userParam;
+function Profile() {
    const { user } = useAuth();
    return (
       <section className="profile">

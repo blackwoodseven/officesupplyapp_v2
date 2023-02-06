@@ -1,7 +1,10 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import * as usersDB from 'test/data/user';
 import { buildUser } from './generate';
-import * as auth from 'auth-provider'
+import * as auth from 'auth-provider';
+import React from 'react'
+import { render } from '@testing-library/react'
+import AppProviders from '../context';
 
 async function loginAsUser(userProperties) {
    // const user = buildUser(userProperties)
@@ -28,5 +31,16 @@ const waitForLoadingToFinish = () =>
       { timeout: 4000 },
    )
 
+
+const AllTheProviders = ({ children }) => {
+   return (
+      <AppProviders>
+         {children}
+      </AppProviders>
+   )
+}
+
+const customRender = (ui, options) => render(ui, { wrapper: AllTheProviders, ...options })
+
 export * from '@testing-library/react'
-export { waitForLoadingToFinish, loginAsUser }
+export { waitForLoadingToFinish, loginAsUser, customRender as render }

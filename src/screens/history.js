@@ -25,9 +25,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Divider } from '@mui/material';
 
-function HistoryList({ userParam }) {
+function HistoryList() {
    const { user } = useAuth();
-   // const user = userParam;
    const [requestData, setRequestData] = useState([])
    const [selectedRequestItem, setSelectedRequestItem] = React.useState(null)
    const [selectedRequestItemModalisOpen, setSelectedRequestItemModalisOpen] = React.useState(false)
