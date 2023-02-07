@@ -49,8 +49,8 @@ test('render create new user', async () => {
    expect(userInputName).toHaveValue('Samarth Udgiri')
 
    const userInputEmail = screen.getByRole('textbox', { name: /email/i })
-   await userEvent.type(userInputEmail, "Samarth.udgiri@kantar.com")
-   expect(userInputEmail).toHaveValue("Samarth.udgiri@kantar.com")
+   await userEvent.type(userInputEmail, "Samarth.udgiri@google.com")
+   expect(userInputEmail).toHaveValue("Samarth.udgiri@google.com")
 
    const userInputId = screen.getByRole('textbox', { name: /id/i })
    await userEvent.type(userInputId, "1211111")
