@@ -1,11 +1,10 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
-import { ArrayBuffer, TextDecoder, TextEncoder, Uint8Array } from 'util';
+import { server } from 'test/server/test-server';
+import { TextDecoder, TextEncoder } from 'util';
+
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
+afterAll(() => server.close())
+afterEach(() => server.resetHandlers())
 
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
-global.ArrayBuffer = ArrayBuffer;
-global.Uint8Array = Uint8Array;
