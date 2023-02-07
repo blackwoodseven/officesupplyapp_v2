@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
-import { act, render, screen, loginAsUser } from 'test/app-test-utils';
+import { act, render, screen, loginAsUser, waitFor } from 'test/app-test-utils';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
 
@@ -63,4 +63,40 @@ test('render create new user', async () => {
       expect(userInputEmail).not.toBeInTheDocument();
       expect(userInputId).not.toBeInTheDocument();
    }, 200)
+});
+
+test('render close create new user popup', async () => {
+   await renderUserList({})
+   const addNewUserButton = await screen.findByRole('button', { name: /add new user/i });
+   expect(addNewUserButton).toBeInTheDocument();
+
+   await userEvent.click(addNewUserButton);
+   const dialogElement = await screen.findByRole('dialog');
+
+   const closeButton = await screen.findAllByRole('button');
+   await userEvent.click(closeButton.at(0));
+
+   await waitFor(async () => {
+      await expect(dialogElement).not.toBeInTheDocument();
+   });
+});
+
+test('render delete user button', async () => {
+   // a helper to use promises with timeouts
+   function sleep(period) {
+      return new Promise(resolve => setTimeout(resolve, period));
+   }
+   await renderUserList({});
+
+   const deleteUserButton = await screen.findAllByRole('button', { name: 'Delete User' });
+   expect(deleteUserButton).toHaveLength(30);
+
+   await userEvent.click(deleteUserButton.at(0));
+
+   await act(async () => {
+      await sleep(1100); // wait *just* a little longer than the timeout in the component
+   });
+   const newDeleteUserButton = await screen.findAllByRole('button', { name: 'Delete User' });
+   expect(newDeleteUserButton).toHaveLength(29);
+
 });
