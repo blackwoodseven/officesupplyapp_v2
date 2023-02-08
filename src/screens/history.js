@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as colors from 'styles/colors';
 import { Button, Spinner, CircleButton, MUIDialog } from 'components/lib';
 
@@ -27,16 +27,16 @@ import { Box, Divider } from '@mui/material';
 
 function HistoryList() {
    const { user } = useAuth();
-   const [requestData, setRequestData] = useState([])
-   const [selectedRequestItem, setSelectedRequestItem] = React.useState(null)
-   const [selectedRequestItemModalisOpen, setSelectedRequestItemModalisOpen] = React.useState(false)
+   let requestData = [];
+   const [selectedRequestItem, setSelectedRequestItem] = useState(null)
+   const selectedRequestItemModalisOpen = Boolean(selectedRequestItem);
 
    const { data, error, isLoading, isError } = useSWR(`requestsList?status=approved&status=rejected&email=${user.Email}`, getDatas);
    const { data: supplyData } = useSWR('suppliesList', getDatas);
 
-   useEffect(() => {
-      setRequestData(data);
-   }, [data])
+   if (data) {
+      requestData = [...data];
+   }
 
    if (requestData && requestData.length > 0 && supplyData && supplyData.length > 0) {
       requestData.forEach(data => {
@@ -48,59 +48,6 @@ function HistoryList() {
             });
          }
       });
-   }
-
-   function ListItems({ item, dIndex }) {
-      const [expanded, setExpanded] = React.useState(false);
-      const handleChange = (panel) => (event, isExpanded) => {
-         setExpanded(isExpanded ? panel : false);
-      };
-
-      const onClick = (item) => {
-         setSelectedRequestItem(item);
-         setSelectedRequestItemModalisOpen(true);
-      };
-      return (
-         <Accordion key={item.id} expanded={expanded === `panel${dIndex}`} onChange={handleChange(`panel${dIndex}`)}>
-            <AccordionSummary
-               expandIcon={<ExpandMoreIcon />}
-               aria-controls="panel1bh-content"
-               id={`panel${dIndex}bh-header`}>
-               <Typography sx={{ width: '30%', flexShrink: 0 }}>
-                  {item.employeeName} - {item.dueDate}
-               </Typography>
-               <Box sx={{ width: '50%', flexShrink: 0 }}>
-                  {
-                     (item.status === "approved") ? (
-                        <Chip label="Approved" color="success" size="small" />
-                     ) : (
-                        <Chip label="Rejected" color="error" size="small" />
-                     )
-                  }
-               </Box>
-               <Box sx={{ color: 'text.secondary' }}>
-                  <Button onClick={() => onClick(item)}>View List</Button>
-               </Box>
-            </AccordionSummary>
-            <AccordionDetails>
-               {
-                  (item.requestList && item.requestList.length > 0) ? (
-                     (item.requestList.map((requestListItem) => (
-                        <div key={requestListItem.id}>
-                           <ListItem>
-                              <ListItemText
-                                 primary={`${requestListItem.name} - ${requestListItem.productQuantity}`}
-                                 secondary={`Quantity -  ${requestListItem.quantity}`}
-                              />
-                           </ListItem>
-                           <Divider />
-                        </div>
-                     )))
-                  ) : ''
-               }
-            </AccordionDetails>
-         </Accordion>
-      )
    }
 
    return (
@@ -122,9 +69,9 @@ function HistoryList() {
                alignItems: 'baseline'
             }}>
                <h2>Request's History</h2>
-               <MUIDialog open={selectedRequestItemModalisOpen} fullWidth={true} maxWidth={'sm'} onClose={() => { setSelectedRequestItemModalisOpen(false); setSelectedRequestItem(null); }}>
+               <MUIDialog open={selectedRequestItemModalisOpen} fullWidth={true} maxWidth={'sm'} onClose={() => { setSelectedRequestItem(null); }}>
                   <div css={{ display: 'flex', justifyContent: 'flex-end' }}>
-                     <CircleButton onClick={() => { setSelectedRequestItemModalisOpen(false); setSelectedRequestItem(null); }}>
+                     <CircleButton onClick={() => { setSelectedRequestItem(null); }}>
                         <span aria-hidden>&times;</span>
                      </CircleButton>
                   </div>
@@ -156,7 +103,7 @@ function HistoryList() {
                   <div className='custom-container'>
                      {
                         (requestData.map((data, index) => (
-                           <ListItems key={data.id} item={data} dIndex={index} />
+                           <ListItems key={data.id} item={data} dIndex={index} setSelectedRequestItem={setSelectedRequestItem} />
                         )))
                      }
                   </div>
@@ -170,6 +117,58 @@ function HistoryList() {
          </>
       </div>
    );
+}
+
+function ListItems({ item, dIndex, setSelectedRequestItem }) {
+   const [expanded, setExpanded] = useState(false);
+   const handleChange = (panel) => (event, isExpanded) => {
+      setExpanded(isExpanded ? panel : false);
+   };
+
+   const onClick = (item) => {
+      setSelectedRequestItem(item);
+   };
+   return (
+      <Accordion key={item.id} expanded={expanded === `panel${dIndex}`} onChange={handleChange(`panel${dIndex}`)}>
+         <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id={`panel${dIndex}bh-header`}>
+            <Typography sx={{ width: '30%', flexShrink: 0 }}>
+               {item.employeeName} - {item.dueDate}
+            </Typography>
+            <Box sx={{ width: '50%', flexShrink: 0 }}>
+               {
+                  (item.status === "approved") ? (
+                     <Chip label="Approved" color="success" size="small" />
+                  ) : (
+                     <Chip label="Rejected" color="error" size="small" />
+                  )
+               }
+            </Box>
+            <Box sx={{ color: 'text.secondary' }}>
+               <Button onClick={() => onClick(item)}>View List</Button>
+            </Box>
+         </AccordionSummary>
+         <AccordionDetails>
+            {
+               (item.requestList && item.requestList.length > 0) ? (
+                  (item.requestList.map((requestListItem) => (
+                     <div key={requestListItem.id}>
+                        <ListItem>
+                           <ListItemText
+                              primary={`${requestListItem.name} - ${requestListItem.productQuantity}`}
+                              secondary={`Quantity -  ${requestListItem.quantity}`}
+                           />
+                        </ListItem>
+                        <Divider />
+                     </div>
+                  )))
+               ) : ''
+            }
+         </AccordionDetails>
+      </Accordion>
+   )
 }
 
 export default HistoryList
