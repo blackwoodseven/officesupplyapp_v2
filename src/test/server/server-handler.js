@@ -3,7 +3,8 @@ import { match } from 'node-match-path';
 
 import * as usersDB from 'test/data/user';
 import * as userListItems from '../data/usersList/userList-items';
-import mockUsersList from '../data/usersList/user-list-data.json';
+
+import * as suppliesListItems from '../data/suppliesList/suppliesList-items';
 
 import { mockUser } from 'test/data/mockuser';
 
@@ -27,9 +28,9 @@ const handlers = [
    }),
 
    rest.get(`${API_BASE_URL}/userList`, async (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(mockUsersList))
+      let userList = await userListItems.getAllUser();
+      return res(ctx.status(200), ctx.json(userList))
    }),
-
    rest.post(`${API_BASE_URL}/userList`, async (req, res, ctx) => {
       const { email } = req.body
       const userFields = { email }
@@ -44,11 +45,29 @@ const handlers = [
       }
       return res(ctx.json({ user }))
    }),
-
    rest.delete(`${API_BASE_URL}/userList/:userID`, async (req, res, ctx) => {
       const { userID } = req.params
       await userListItems.remove(userID)
       return res(ctx.json({ success: true }))
+   }),
+
+   rest.get(`${API_BASE_URL}/suppliesList`, async (req, res, ctx) => {
+      let supplyItem = await suppliesListItems.getAllSupplies();
+      return res(ctx.status(200), ctx.json(supplyItem))
+   }),
+   rest.post(`${API_BASE_URL}/suppliesList`, async (req, res, ctx) => {
+      const data = req.body
+      // const userFields = { email }
+      // let user
+      // try {
+      //    user = await usersDB.authenticate(userFields)
+      // } catch (error) {
+      //    return res(
+      //       ctx.status(400),
+      //       ctx.json({ status: 400, message: error.message }),
+      //    )
+      // }
+      return res(ctx.json(data))
    }),
 
    // rest.get(`${apiUrl}/me`, async (req, res, ctx) => {

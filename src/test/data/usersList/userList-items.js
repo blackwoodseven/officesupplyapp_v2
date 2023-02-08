@@ -49,4 +49,8 @@ async function reset() {
    persist()
 }
 
-export { update, remove, reset }
+async function getAllUser() {
+   return userListItems
+}
+
+export { update, remove, reset, getAllUser }

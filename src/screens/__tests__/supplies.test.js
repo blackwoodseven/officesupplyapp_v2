@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-debugging-utils */
-import { loginAsUser, render, fireEvent, within } from 'test/app-test-utils'
+import { loginAsUser, render, fireEvent, within, act, waitFor } from 'test/app-test-utils'
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from 'App';
@@ -19,11 +19,8 @@ test('render supplies list and check button(s) are available', async () => {
    const addNewUserButton = await screen.findByRole('button', { name: /add new item/i });
    expect(addNewUserButton).toBeInTheDocument();
 
-   const coffeeItem = await screen.findAllByText(/coffee/i);
-   expect(coffeeItem).toHaveLength(10);
-
    const allItems = await screen.findAllByRole("listitem");
-   expect(allItems).toHaveLength(53);
+   expect(allItems).toHaveLength(30);
 });
 
 test('render create new supply Item', async () => {
@@ -33,6 +30,7 @@ test('render create new supply Item', async () => {
    await userEvent.click(addNewUserButton);
 
    const dianlogScreen = within(screen.getByRole('dialog'));
+   const dialogElement = await screen.findByRole('dialog');
 
    const userInputName = dianlogScreen.getByRole('textbox', { name: /name/i });
    userEvent.type(userInputName, "Mouse");
@@ -49,8 +47,15 @@ test('render create new supply Item', async () => {
    fireEvent.click(listbox.getByText(/pack/i));
 
    const submitButton = dianlogScreen.getByRole('button', { name: /add/i })
-   await fireEvent.click(submitButton);
    await userEvent.click(submitButton);
+
+   await act(async () => {
+      await sleep(1100); // wait *just* a little longer than the timeout in the component
+   });
+
+   await waitFor(async () => {
+      await expect(dialogElement).not.toBeInTheDocument();
+   });
    // within(dianlogScreen)
    // expect(screen.getByRole('heading')).toHaveTextContent(/my account/i);
    // const submitButton = screen.getByRole('button', {name: /add/i})
@@ -58,3 +63,8 @@ test('render create new supply Item', async () => {
    //    userEvent.click(submitButton);
    // })
 });
+
+// a helper to use promises with timeouts
+function sleep(period) {
+   return new Promise(resolve => setTimeout(resolve, period));
+}
