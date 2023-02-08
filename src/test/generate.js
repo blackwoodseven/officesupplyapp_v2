@@ -3,9 +3,9 @@ import { faker } from '@faker-js/faker';
 function buildUser(overrides) {
    return {
       ID: faker.datatype.uuid(),
-      Name: faker.internet.userName("Samarth", "Udgiri"),
+      Name: faker.internet.userName("John", "Doe"),
       password: faker.internet.password(),
-      Email: faker.internet.email("Samarth", "Udgiri"),
+      Email: faker.internet.email("John", "Doe"),
       ...overrides,
    }
 }
@@ -17,6 +17,15 @@ function buildUserList(overrides) {
       email: faker.internet.email(),
       gender: faker.name.sex(),
       role: faker.helpers.arrayElement(['admin', 'normal']),
+      ...overrides,
+   }
+}
+
+function buildSuppliesList(overrides) {
+   return {
+      id: faker.datatype.number(),
+      product: faker.commerce.product(),
+      quantity: faker.datatype.number({ max: 100 }) + ' ' + faker.helpers.arrayElement(['KG', 'Gram', 'Bag', 'Pic', 'Pack']),
       ...overrides,
    }
 }
@@ -41,4 +50,4 @@ function buildUserList(overrides) {
 //    }
 // }
 
-export { buildUser, buildUserList }
+export { buildUser, buildUserList, buildSuppliesList }
