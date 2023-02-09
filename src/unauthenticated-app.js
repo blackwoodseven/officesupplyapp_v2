@@ -13,7 +13,7 @@ function UnauthenticatedApp() {
          idtoken: token.credential
       }
       window.localStorage.setItem('__auth_provider_OAuthToken__', token.credential)
-      login({ data: payload }).then(() => navigate('/supplies'))
+      login({ data: payload }).then(() => navigate('/'))
    }
    return (
       <div

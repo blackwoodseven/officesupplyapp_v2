@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as colors from 'styles/colors';
 import { Button, Spinner, FormGroup, CircleButton, MUIDialog } from 'components/lib';
 
@@ -157,16 +157,16 @@ function RequestsList() {
    const { data: supplyData } = useSWR('suppliesList', getDatas);
 
    const [selectedRequestItem, setSelectedRequestItem] = React.useState(null);
-   const [selectedRequestItemModalisOpen, setSelectedRequestItemModalisOpen] = React.useState(false);
    const [isOpen, setIsOpen] = React.useState(false);
+   const selectedRequestItemModalisOpen = Boolean(selectedRequestItem);
 
    const Alert = React.forwardRef(function Alert(props, ref) {
       return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
    });
 
-   useEffect(() => {
+   if (data && requestData.length === 0) {
       setRequestData(data);
-   }, [data])
+   }
 
    if (requestData && requestData.length > 0 && supplyData && supplyData.length > 0) {
       requestData.forEach(data => {
@@ -265,9 +265,9 @@ function RequestsList() {
                   <DialogActions></DialogActions>
                </MUIDialog>
 
-               <MUIDialog open={selectedRequestItemModalisOpen} fullWidth={true} maxWidth={'sm'} onClose={() => { setSelectedRequestItemModalisOpen(false); setSelectedRequestItem(null); }}>
+               <MUIDialog open={selectedRequestItemModalisOpen} fullWidth={true} maxWidth={'sm'} onClose={() => { setSelectedRequestItem(null); }}>
                   <div css={{ display: 'flex', justifyContent: 'flex-end' }}>
-                     <CircleButton onClick={() => { setSelectedRequestItemModalisOpen(false); setSelectedRequestItem(null); }}>
+                     <CircleButton onClick={() => { setSelectedRequestItem(null); }}>
                         <span aria-hidden>&times;</span>
                      </CircleButton>
                   </div>
@@ -304,7 +304,6 @@ function RequestsList() {
                         (requestData.map((data, index) => (
                            <ListItems key={data.id} item={data} dIndex={index}
                               setSelectedRequestItem={setSelectedRequestItem}
-                              setSelectedRequestItemModalisOpen={setSelectedRequestItemModalisOpen}
                               updateListStatus={updateListStatus}
                               user={user}
                            />
@@ -336,7 +335,7 @@ function RequestsList() {
    );
 }
 
-function ListItems({ item, dIndex, setSelectedRequestItem, setSelectedRequestItemModalisOpen, updateListStatus, user }) {
+function ListItems({ item, dIndex, setSelectedRequestItem, updateListStatus, user }) {
    const [expanded, setExpanded] = React.useState(false);
    const handleChange = (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
@@ -344,7 +343,6 @@ function ListItems({ item, dIndex, setSelectedRequestItem, setSelectedRequestIte
 
    const onClick = (row) => {
       setSelectedRequestItem(row);
-      setSelectedRequestItemModalisOpen(true);
    };
    const onClickApprove = (row) => {
       updateListStatus(row, 'approved');

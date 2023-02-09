@@ -24,12 +24,12 @@ import MenuItem from '@mui/material/MenuItem';
 
 const RouteArray = {
    normal: [
-      { 'name': 'Supplies', 'link': '/supplies' },
+      { 'name': 'Supplies', 'link': '/' },
       { 'name': 'Request', 'link': '/my-request' },
       { 'name': 'History', 'link': '/history' },
    ],
    admin: [
-      { 'name': 'Supplies', 'link': '/supplies' },
+      { 'name': 'Supplies', 'link': '/' },
       { 'name': 'Request', 'link': '/my-request' },
       { 'name': 'Users', 'link': '/users' },
       { 'name': 'History', 'link': '/history' },

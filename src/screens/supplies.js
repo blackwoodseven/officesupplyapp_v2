@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as colors from 'styles/colors';
 import { Button, Spinner, FormGroup, Input, CircleButton, MUIDialog } from 'components/lib';
 
@@ -97,9 +97,9 @@ function SuppliesList() {
    const [isOpen, setIsOpen] = useState(false);
    const { data, error, isLoading } = useSWR('suppliesList', getDatas);
    
-   useEffect(() => {
+   if (data && suppplyData.length === 0) {
       setSuppplyData(data);
-   }, [data])
+   }
 
    const Alert = React.forwardRef(function Alert(props, ref) {
       return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

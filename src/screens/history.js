@@ -31,7 +31,7 @@ function HistoryList() {
    const [selectedRequestItem, setSelectedRequestItem] = useState(null)
    const selectedRequestItemModalisOpen = Boolean(selectedRequestItem);
 
-   const { data, error, isLoading, isError } = useSWR(`requestsList?status=approved&status=rejected&email=${user.Email}`, getDatas);
+   const { data, error, isLoading } = useSWR(`requestsList?status=approved&status=rejected&email=${user.Email}`, getDatas);
    const { data: supplyData } = useSWR('suppliesList', getDatas);
 
    if (data) {
@@ -50,71 +50,67 @@ function HistoryList() {
       });
    }
 
+   if (isLoading) return (<Spinner />)
+
+   if (error) return (
+      <div css={{ color: colors.danger }}>
+         <p>There was an error:</p>
+         <pre>{error.message}</pre>
+      </div>
+   )
+
    return (
       <div style={{ maxHeight: 'calc(85vh - 90px)', width: '100%' }}>
-         {isError ? (
-            <div css={{ color: colors.danger }}>
-               <p>There was an error:</p>
-               <pre>{error.message}</pre>
-            </div>
-         ) : null}
-         {isLoading ? (<Spinner />) : ('')}
-
-         <>
-            <div css={{
-               display: 'grid',
-               height: '70px',
-               padding: '0px 10px',
-               gridTemplateColumns: '1fr 0.2fr',
-               alignItems: 'baseline'
-            }}>
-               <h2>Request's History</h2>
-               <MUIDialog open={selectedRequestItemModalisOpen} fullWidth={true} maxWidth={'sm'} onClose={() => { setSelectedRequestItem(null); }}>
-                  <div css={{ display: 'flex', justifyContent: 'flex-end' }}>
-                     <CircleButton onClick={() => { setSelectedRequestItem(null); }}>
-                        <span aria-hidden>&times;</span>
-                     </CircleButton>
-                  </div>
-                  <DialogTitle css={{ textAlign: 'center' }}>Request Items List</DialogTitle>
-                  <DialogContent>
-                     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                        {
-                           (selectedRequestItem && selectedRequestItem.requestList) ?
-                              (selectedRequestItem.requestList.map((rItem, i) => (
-                                 <ListItem key={i}>
-                                    <ListItemAvatar>
-                                       <Avatar>
-                                          <ImageIcon />
-                                       </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText primary={`${rItem.name} - ${rItem.productQuantity}`} secondary={`Quantity - ${rItem.quantity}`} />
-                                 </ListItem>
-                              ))
-                              ) : ''
-                        }
-                     </List>
-
-                  </DialogContent>
-                  <DialogActions></DialogActions>
-               </MUIDialog>
-            </div>
-            {
-               (requestData && requestData.length) ? (
-                  <div className='custom-container'>
+         <div css={{
+            display: 'grid',
+            height: '70px',
+            padding: '0px 10px',
+            gridTemplateColumns: '1fr 0.2fr',
+            alignItems: 'baseline'
+         }}>
+            <h2>Request's History</h2>
+            <MUIDialog open={selectedRequestItemModalisOpen} fullWidth={true} maxWidth={'sm'} onClose={() => { setSelectedRequestItem(null); }}>
+               <div css={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <CircleButton onClick={() => { setSelectedRequestItem(null); }}>
+                     <span aria-hidden>&times;</span>
+                  </CircleButton>
+               </div>
+               <DialogTitle css={{ textAlign: 'center' }}>Request Items List</DialogTitle>
+               <DialogContent>
+                  <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                      {
-                        (requestData.map((data, index) => (
-                           <ListItems key={data.id} item={data} dIndex={index} setSelectedRequestItem={setSelectedRequestItem} />
-                        )))
+                        (selectedRequestItem && selectedRequestItem.requestList) ?
+                           (selectedRequestItem.requestList.map((rItem, i) => (
+                              <ListItem key={i}>
+                                 <ListItemAvatar>
+                                    <Avatar>
+                                       <ImageIcon />
+                                    </Avatar>
+                                 </ListItemAvatar>
+                                 <ListItemText primary={`${rItem.name} - ${rItem.productQuantity}`} secondary={`Quantity - ${rItem.quantity}`} />
+                              </ListItem>
+                           ))
+                           ) : ''
                      }
-                  </div>
-               ) : (
-                  <div css={{
-                     display: 'grid',
-                     justifyContent: 'center',
-                  }}>No Data Available</div>
-               )
-            }
-         </>
+                  </List>
+
+               </DialogContent>
+               <DialogActions></DialogActions>
+            </MUIDialog>
+         </div>
+         {
+            (requestData && requestData.length) ? (
+               <div className='custom-container'>
+                  {
+                     (requestData.map((data, index) => (
+                        <ListItems key={data.id} item={data} dIndex={index} setSelectedRequestItem={setSelectedRequestItem} />
+                     )))
+                  }
+               </div>
+            ) : (
+               <div css={{ display: 'grid', justifyContent: 'center' }}>No Data Available</div>
+            )
+         }
       </div>
    );
 }
