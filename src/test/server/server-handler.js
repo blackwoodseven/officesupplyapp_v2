@@ -5,6 +5,7 @@ import * as usersDB from 'test/data/user';
 import * as userListItems from '../data/usersList/userList-items';
 
 import * as suppliesListItems from '../data/suppliesList/suppliesList-items';
+import * as requestsListItems from '../data/requestsList/requestsList-items';
 
 import { mockUser } from 'test/data/mockuser';
 
@@ -68,6 +69,11 @@ const handlers = [
       //    )
       // }
       return res(ctx.json(data))
+   }),
+
+   rest.get(`${API_BASE_URL}/requestsList`, async (req, res, ctx) => {
+      let requestsItem = await requestsListItems.getAllRequests();
+      return res(ctx.status(200), ctx.json(requestsItem))
    }),
 
    // rest.get(`${apiUrl}/me`, async (req, res, ctx) => {

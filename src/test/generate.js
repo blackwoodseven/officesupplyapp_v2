@@ -23,11 +23,35 @@ function buildUserList(overrides) {
 
 function buildSuppliesList(overrides) {
    return {
-      id: faker.datatype.number(),
+      id: faker.datatype.number({ max: 10 }),
       product: faker.commerce.product(),
       quantity: faker.datatype.number({ max: 100 }) + ' ' + faker.helpers.arrayElement(['KG', 'Gram', 'Bag', 'Pic', 'Pack']),
       ...overrides,
    }
+}
+
+function buildRequestsList(overriders) {
+   return {
+      id: faker.datatype.number(),
+      email: faker.internet.email(),
+      employeeName: faker.name.fullName(),
+      requestedDate: faker.date.birthdate({ min: 2022, max: 2022, mode: 'year' }),
+      dueDate: faker.date.birthdate({ min: 2022, max: 2022, mode: 'year' }),
+      lastStatusUpdate: faker.date.birthdate({ min: 2022, max: 2022, mode: 'year' }),
+      status: faker.helpers.arrayElement(['approved', 'rejected', 'pending']),
+      requestList: createUsers(faker.datatype.number({ min: 1, max: 5 }))
+   }
+}
+
+function buildReqSupplyData(overriders) {
+   return {
+      "id": faker.datatype.number({ max: 10 }),
+      "quantity": faker.datatype.number({ max: 100 })
+   }
+}
+
+function createUsers(numUsers = 5) {
+   return new Array(numUsers).fill(undefined).map(buildReqSupplyData);
 }
 
 // function buildListItem(overrides = {}) {
@@ -50,4 +74,4 @@ function buildSuppliesList(overrides) {
 //    }
 // }
 
-export { buildUser, buildUserList, buildSuppliesList }
+export { buildUser, buildUserList, buildSuppliesList, buildRequestsList }

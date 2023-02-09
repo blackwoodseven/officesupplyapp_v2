@@ -9,7 +9,7 @@ async function renderSupplyScreen({ user }) {
    if (user === undefined) {
       user = await loginAsUser()
    }
-   const route = '/supplies';
+   const route = '/';
    const utils = await render(<App />, { user, route });
    return { ...utils, user }
 }
