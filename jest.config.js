@@ -46,9 +46,9 @@ module.exports = {
    collectCoverageFrom: [
       'src/**/*.js',
       '!<rootDir>/node_modules/**/*',
-      // '!<rootDir>/src/test/**/*',
+      '!<rootDir>/src/test/**/*',
       // '!<rootDir>/src/setupProxy*',
-      // '!<rootDir>/src/setupTests*',
+      '!<rootDir>/src/setupTests*',
       // '!<rootDir>/src/dev-tools/**/*',
    ],
    watchPlugins: [
